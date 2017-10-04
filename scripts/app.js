@@ -1,4 +1,7 @@
-let questionsAnswered = 0
+// let questionsAnswered = 0
+const quizOrder=[4,5,0,1,14,13,12,11,9,10,8,7,2,3,6]
+
+//a function to see if all the questions are answered.
 const checkComplete = ()=> {
 	return questionsAnswered === $('[data-correct-answer]').length
 }
