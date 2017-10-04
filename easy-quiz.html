@@ -11,8 +11,9 @@
 	<title></title>
 </head>
 <body>
-	<img src="https://d0.awsstatic.com/logos/AWS%20Logo%20Variants/Full%20Color/AWS-Logo_Full-Color_500x300.png" alt="amazon web services logo">
-
+	<img class="awslogo" src="https://d0.awsstatic.com/logos/AWS%20Logo%20Variants/Full%20Color/AWS-Logo_Full-Color_500x300.png" alt="amazon web services logo">
+	<div class="scoretitle">Score</div>
+	<div class="runningScore" data-runningscore></div>
 	<div id="beginnerBox">Beginner</div>
 	<div class="section">
 		<div class="container">
@@ -24,9 +25,10 @@
 			<!-- adding more categories -->
 
 		</div>
-		<div class="hidden" data-correct><img src ="http://www.thomasclausen.net/wp-content/plugins/wp-support-plus-responsive-ticket-system/asset/images/checkmark.png" alt="green check logo" width="50px" height="50px" ></div>
-		<div class="hidden" data-incorrect><img src="https://cdn.pixabay.com/photo/2012/04/12/20/12/x-30465_960_720.png" alt="red x logo" width="50px" height="50px"></div>
-		<div data-runningscore></div>
+		<div class="hidden" data-correct><img src ="http://www.thomasclausen.net/wp-content/plugins/wp-support-plus-responsive-ticket-system/asset/images/checkmark.png" alt="green check logo" style=" display: block; margin: auto; height: auto; width: auto; max-width: 50px;  max-height: 50px;"; /></div>
+
+		<div class="hidden" data-incorrect><img src="https://cdn.pixabay.com/photo/2012/04/12/20/12/x-30465_960_720.png" alt="red x logo" style=" display: block; margin: auto; height: auto; width: auto; max-width: 50px;  max-height: 50px;";/></div>
+
 
 		<div class="container" data-correct-answer="Compute">
 			<p><b>Amazon Elastic Compute Cloud (Amazon EC2)</b> is a web service that provides secure, resizable compute capacity in the cloud. It is designed to make web-scale cloud computing easier for developers.</p>
@@ -40,11 +42,11 @@
 		<div class="container hidden" data-correct-answer="Game Development">
 			<p><b>Amazon GameLift</b> is a simple,cost-effective dedicated game server hosting.</p>
 		</div>
-		<!-- <div class="container hidden" data-correct-answer="Game Development">
-			<p><b>Amazon Lumberyard</b>  is a free AAA game engine deeply integrated with AWS and Twitch – with full source.</p>
+		<div class="container hidden" data-correct-answer="Game Development">
+			<p><b>Amazon Lumberyard</b> is a free AAA game engine deeply integrated with AWS and Twitch – with full source.</p>
 		</div>
 		<div class="container hidden" data-correct-answer="Compute">
-			<p>Meet<b>Amazon Lightsail</b> - Virtual private servers made easy. Starting at $5 per month.</p>
+			<p>Meet <b>Amazon Lightsail</b> - Virtual private servers made easy. Starting at $5 per month.</p>
 		</div>
 		<div class="container hidden" data-correct-answer="Compute">
 			<p><b>AWS Elastic Beanstalk</b>  is an easy-to-use service for deploying and scaling web applications and services developed with Java, .NET, PHP, Node.js, Python, Ruby, Go, and Docker on familiar servers such as Apache, Nginx, Passenger, and IIS.</p>
@@ -60,7 +62,23 @@
 		</div>
 		<div class="container hidden" data-correct-answer="Storage">
 			<p><b>Amazon Glacier </b>is a secure, durable, and extremely low-cost cloud storage service for data archiving and long-term backup.</p>
-		</div> -->
+		</div> 
+		<div class="container hidden" data-correct-answer="Developer Tools">
+			<p><b>AWS CodeStar</b> enables you to quickly develop, build, and deploy applications on AWS. AWS CodeStar provides a unified user interface, enabling you to easily manage your software development activities in one place.</p>
+		</div>
+			<div class="container hidden" data-correct-answer="Storage">
+			<p><b>Amazon Elastic Block Store (Amazon EBS)</b> provides persistent block storage volumes for use with Amazon EC2 instances in the AWS Cloud.</p>
+		</div>
+		<div class="container hidden" data-correct-answer="Storage">
+			<p><b>AWS Snowball Edge</b> is a 100TB data transfer device with on-board storage and compute capabilities. You can use Snowball Edge to move large amounts of data into and out of AWS, as a temporary storage tier for large local datasets, or to support local workloads in remote or offline locations.</p>
+		</div>
+		<div class="container hidden" data-correct-answer="Storage">
+			<p><b>Amazon Elastic File System (Amazon EFS)</b> provides simple, scalable file storage for use with Amazon EC2 instances in the AWS Cloud. Amazon EFS is easy to use and offers a simple interface that allows you to create and configure file systems quickly and easily.</p>
+		</div>
+
+
+
+		
 		
 		 <button class="next" data-next>Next</button>
 
