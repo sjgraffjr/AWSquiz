@@ -1,16 +1,17 @@
 let questionsAnswered = 0
 const checkComplete = ()=> {
-
 	return questionsAnswered === $('[data-correct-answer]').length
-
 }
 
 const checkAnswer = (e)=> {
-	
 	const $el = $($('[data-correct-answer]')[questionsAnswered])
 	const correctAnswer = $el.data('correctAnswer')
 	const selectedAnswer = $(e.target).data('possibleAnswer')
-	$el.data('userAnswer', selectedAnswer)
+	
+	if(!$el.data('userAnswer')){
+		$el.data('userAnswer', selectedAnswer)
+		$('[data-runningscore]').text(`${correctAnswers()} / ${questionsAnswered + 1}`)
+	}
 	const $correctIcon = $('[data-correct]').hide()
 	const $incorrectIcon = $('[data-incorrect]').hide()
 	if (correctAnswer === selectedAnswer){
@@ -43,7 +44,7 @@ const nextQuestion = () =>{
 	nextElement.show()
 	if(checkComplete()){
 		
-		const $p = $('<p class="final_score">').text(`You got ${correctAnswers()} out of ${questionsAnswered}`)
+		const $p = $('<p class="final_score">').text(`You got ${correctAnswers()} out of ${questionsAnswered} on your first try`)
 		$(".section").append($p)
 		$("button").hide()
 		//instead of alerting build a paragraph elemnt with jquery and add this as the text of it and append it to the page
