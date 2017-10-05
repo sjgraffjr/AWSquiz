@@ -73,6 +73,7 @@ quizOrder = shuffleArray(quizOrder)
 $('[data-possible-answer]').on('click',checkAnswer)
 //click on the next button to get to the nextQuestion
 $('[data-next]').on('click',nextQuestion)
+$($('[data-correct-answer]')[quizOrder[0]]).show()
 
 
 
