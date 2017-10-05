@@ -1,5 +1,4 @@
 //data, how it should look, how the user interacts
-
 let questionsAnswered = 0 //starting at 0 because they haven't answered any questions
 //this function checks to see if all the questions are answered.
 const checkComplete = () => {
@@ -29,20 +28,20 @@ const correctAnswers = () => {
  const $els = $('[data-correct-answer]')//storing questions in variable called $els. 
  let count = 0 //let because it changes--it's not constant. starts at 0
  for(let i = 0; i < $els.length; i++ ){
- 	let $el = $($els[i]) //we got a dom element we have to wrap in a JQuery element. 
+ 	let $el = $($els[i]) // wrapping dom element in a JQuery element. 
  	if($el.data('correctAnswer') === $el.data('userAnswer')){ //$el = <div> correctAnswer = "Database" or "Storage". userAnswer 
  		count += 1 //the counter in the upper right going up by 1 if it's corret answer. 
  	}
  }
- return count //if you didn't do this you would get undefined on line 53 ${correctAnswers()
+ return count //if you didn't do this you would get undefined on line 49 ${correctAnswers()
 }
 //this function generates the next question
 const nextQuestion = () => {
 	 questionsAnswered += 1 //going to the next question 
-	$('[data-correct-answer]').hide() //hiding the question 
+	$('[data-correct-answer]').hide() //hiding the last question 
 	$('[data-correct]').hide() //hiding the green check
 	$('[data-incorrect]').hide()// hidding the red x
-	const nextElement = $($('[data-correct-answer]')[quizOrder[questionsAnswered]])//finds the next qustion
+	const nextElement = $($('[data-correct-answer]')[quizOrder[questionsAnswered]])//finds the next random question
 	nextElement.show()//showing the next question
 	if(checkComplete()){ 
 		
@@ -53,6 +52,7 @@ const nextQuestion = () => {
 		//hide the buttons that you can select answers with
 	}	
 }
+//this function shuffles all of the questions in a random order
 function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
@@ -60,6 +60,7 @@ function shuffleArray(array) {
     }
     return array;
 }
+
 let quizOrder = []
 
 for (let i = 0; i < $("[data-correct-answer]").length; i++){ 
