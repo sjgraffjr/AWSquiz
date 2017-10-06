@@ -2,8 +2,9 @@
 
 As I developer I've heard about Amazon Web services but I didn't really know what it was. So I created a quiz to get users to know about Amazon Web Services. 
 
+(https://wireframe.cc/DKuJWK "wireframe")
 
-## Techinical Overview
+## Technical Overview
 ### The home page 
 The home page loads and  you the user can click the beginner button that will switch to the quiz.
 
@@ -21,6 +22,9 @@ The different actions the user can make to change the page:
 2. Clicking the 5 category buttons
 
 Randomization of the questions happens by counting all the questions on the page and building an array with the question positions and the randomizes them.
+
+## Future Versions
+I would like to make rounds. I would also like to make an expert button, where the user will have to list all the web sevices in the game.
 
 ## Other Tips 
 1. avoid using the css classes to find elements on the page because designers generally manipulate them. 

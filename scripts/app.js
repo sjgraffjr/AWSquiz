@@ -67,13 +67,14 @@ let quizOrder = []
 for (let i = 0; i < $("[data-correct-answer]").length; i++){ 
   quizOrder[i] = i
 }
-
+//this randomizes the positions of the array
 quizOrder = shuffleArray(quizOrder)
 
-//click on button and see if the answer is correct or incorrect. ,checkAnswer is the clickevent handler
+//click on button and see if the answer is correct or incorrect.
 $('[data-possible-answer]').on('click',checkAnswer)
 //click on the next button to get to the nextQuestion
 $('[data-next]').on('click',nextQuestion)
+//showing the first question 
 $($('[data-correct-answer]')[quizOrder[0]]).show()
 
 
