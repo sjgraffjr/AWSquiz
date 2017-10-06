@@ -1,58 +1,59 @@
-//data, how it should look, how the user interacts
-let questionsAnswered = 0 //starting at 0 because they haven't answered any questions
+
+let nextBtnClicksCount = 0 
+
 //this function checks to see if all the questions are answered.
-const checkComplete = () => {
-	return questionsAnswered === $('[data-correct-answer]').length //counting the number of correct answers. data-correct-answer.length is the number of questions. returning true or false. 
+const gameComplete = () => {
+	return nextBtnClicksCount === $('[data-correct-answer]').length 
 }
 //this function checks to see if the answer is correct
 const checkAnswer = (e) => {
-	const $el = $($('[data-correct-answer]')[quizOrder[questionsAnswered]])//questionsanswered is the position and you are getting something out at that position.
-	const correctAnswer = $el.data('correctAnswer')//$el=div, data=attr,correctAnswer is camelcase version of the attribute. trying like "Database"or "Storage"
-	const selectedAnswer = $(e.target).data('possibleAnswer') //$e.target is the button, you want to wrap in JQuery.
-	//letting the user choose one category and not changing their answer.
-	if(!$el.data('userAnswer')){ //checking to see if it's been added to the div.
-		$el.data('userAnswer', selectedAnswer)//userAnswer  is  an attribue being added to question div. Putting it on the div.
-		$('[data-runningscore]').text(`${correctAnswers()} / ${questionsAnswered + 1}`)//this is score in top right of page
+	const currentQuestionPosition = quizOrder[nextBtnClicksCount]
+	const $currentQuestion = $($('[data-correct-answer]')[currentQuestionPosition])
+	const correctAnswer = $currentQuestion.data('correctAnswer')
+	const selectedAnswer = $(e.target).data('possibleAnswer') 
+	// this logic lets the user choose one category and not change their answer.
+	if(!$currentQuestion.data('userAnswer')){ //checking to see if it's been added to the div.
+		$currentQuestion.data('userAnswer', selectedAnswer)//userAnswer  is  an attribue being added to question div.
+		$('[data-runningscore]').text(`${correctAnswers()} / ${nextBtnClicksCount + 1}`)
 	}
-	const $correctIcon = $('[data-correct]').hide()//finding data attr "data-correct" calling hide.//finding green check logo and hiding it.
-	const $incorrectIcon = $('[data-incorrect]').hide()//finding data attr "data-incorrect"calling hide.//finding red x logo and hiding it.
+	const $correctIcon = $('[data-correct]').hide()
+	const $incorrectIcon = $('[data-incorrect]').hide()
 	
 	if (correctAnswer === selectedAnswer){
-		$correctIcon.show() //showing the green check logo
+		$correctIcon.show() 
 	}else{
-		$incorrectIcon.show() //showing the red x logo 
+		$incorrectIcon.show() 
 	}	
 }
 //this function counts the correct answers
 const correctAnswers = () => {
- const $els = $('[data-correct-answer]')//storing questions in variable called $els. 
- let count = 0 //let because it changes--it's not constant. starts at 0
- for(let i = 0; i < $els.length; i++ ){
- 	let $el = $($els[i]) // wrapping dom element in a JQuery element. 
- 	if($el.data('correctAnswer') === $el.data('userAnswer')){ //$el = <div> correctAnswer = "Database" or "Storage". userAnswer 
- 		count += 1 //the counter in the upper right going up by 1 if it's corret answer. 
+ const $questions = $('[data-correct-answer]')
+ let correctAnswerCount = 0 
+ for(let i = 0; i < $questions.length; i++ ){
+ 	let $question = $($questions[i]) 
+ 	if($question.data('correctAnswer') === $question.data('userAnswer')){ 
+ 		correctAnswerCount += 1  
  	}
  }
- return count //if you didn't do this you would get undefined on line 49 ${correctAnswers()
+ return correctAnswerCount 
 }
-//this function generates the next question
+//this function shows the next question
 const nextQuestion = () => {
-	 questionsAnswered += 1 //going to the next question 
-	$('[data-correct-answer]').hide() //hiding the last question 
-	$('[data-correct]').hide() //hiding the green check
-	$('[data-incorrect]').hide()// hidding the red x
-	const nextElement = $($('[data-correct-answer]')[quizOrder[questionsAnswered]])//finds the next random question
-	nextElement.show()//showing the next question
-	if(checkComplete()){ 
+	 nextBtnClicksCount += 1
+	 const currentQuestionPosition = quizOrder[nextBtnClicksCount]
+	$('[data-correct-answer]').hide() 
+	$('[data-correct]').hide() 
+	$('[data-incorrect]').hide()
+	const $question = $($('[data-correct-answer]')[currentQuestionPosition])
+	$question.show()
+	if(gameComplete()){ 
 		
-		const $p = $('<p class="final_score">').text(`You got ${correctAnswers()} out of ${questionsAnswered} on your first try`)
+		const $p = $('<p class="final_score">').text(`You got ${correctAnswers()} out of ${nextBtnClicksCount} on your first try`)
 		$(".section").append($p)
 		$("button").hide()
-		//instead of alerting build a paragraph elemnt with jquery and add this as the text of it and append it to the page
-		//hide the buttons that you can select answers with
 	}	
 }
-//this function shuffles all of the questions in a random order
+//this function shuffles an array 
 function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
@@ -60,7 +61,7 @@ function shuffleArray(array) {
     }
     return array;
 }
-
+// this logic puts the questions positions in an array
 let quizOrder = []
 
 for (let i = 0; i < $("[data-correct-answer]").length; i++){ 
